@@ -1,15 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+import countries from './index_store.js';
+import userRegistrationDataFetch from './userRegistrationDataFetch/index.js';
 
+Vue.use( Vuex );
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+	modules: {
+		countries,
+		userRegistrationDataFetch
+	}
+});

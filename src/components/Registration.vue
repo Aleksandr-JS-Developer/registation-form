@@ -7,7 +7,7 @@
 					<img src="../assets/images/logo.svg" class="form-title-logo" alt="logo BestRest">
 				</div>
 				<div class="form-seo-text">
-					<a href="#" class="cta">Sign Up</a> and find the best place to rest while traveling
+					<a href="#" class="cta sing-up not-underline">Sign Up </a> and find the best place to rest while traveling
 				</div>
 				<div class="form-inputs">
 					<Inputs />
@@ -28,6 +28,7 @@
 
 import Inputs from './inputs.vue';
 
+
 export default {
 	name: 'Registration',
 	components: { Inputs }
@@ -38,9 +39,14 @@ export default {
 <style scoped lang="scss">
 	@import '../assets/scss/mixins.scss';
 
+	* {
+		font-family: 'Rubik', sans-serif;
+	}
+
 	section {
 		width: 100vw;
 		height: 100vh;
+		color: white;
 
 		background-image: url( '../assets/images/bg-image.jpg' );
 		background-position: center;
@@ -59,7 +65,7 @@ export default {
 				width: 630px;
 				height: 560px;
 
-				border: 1px solid black;
+				// border: 1px solid black;
 
 				.form {
 					&-title {
@@ -77,7 +83,7 @@ export default {
 					}
 
 					&-inputs {
-						border: 1px solid white;
+						// border: 1px solid white;
 						height: 400px;
 
 						display: grid;
@@ -95,6 +101,7 @@ export default {
 			width: 100vw;
 			position: absolute;
 			bottom: .5em;
+			font-weight: 300;
 
 			@include flex-center;
 		}
@@ -102,6 +109,18 @@ export default {
 
 	.cta {
 		color: $cta-color;
+	}
+
+	.sing-up {
+		margin-right: 5px;
+	}
+
+	.not-underline {
+		text-decoration: none !important;
+	}
+
+	.form-seo-text {
+		font-size: 24px;
 	}
 
 </style>

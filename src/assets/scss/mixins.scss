@@ -5,3 +5,32 @@
 	justify-content: center;
 }
 
+@mixin del-borders-and-outlines {
+	border: none;
+	outline: none;
+	&:active,
+	&:focus,
+	&:hover {
+		border: none;
+		outline: none;
+	}
+
+	* {
+		border: none;
+		outline: none;
+		&:active,
+		&:focus,
+		&:hover {
+			border: none;
+			outline: none;
+		}
+	}
+}
+
+.cta {
+	color: $cta-color;
+}
+
+.border-del {
+	border: none !important;
+}
