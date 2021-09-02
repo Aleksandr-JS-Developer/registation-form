@@ -1,6 +1,6 @@
 <template>
     <div class="contain">
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'firstname'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/user.svg">
 			<v-text-field
 				hide-details
@@ -8,11 +8,13 @@
 				filled
             	label="First Name"
 				v-model="userData.firstname"
+				@focus="focusedNow = 'firstname'"
+				@blur="focusedNow = ''"
           	>  
 			</v-text-field>
 		</div>
 
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'secondname'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/users.svg">
 			<v-text-field
 				hide-details
@@ -20,16 +22,20 @@
 				filled
             	label="Second Name"
 				v-model="userData.secondname"
+				@focus="focusedNow = 'secondname'"
+				@blur="focusedNow = ''"
           	>  
 			</v-text-field>
 		</div>
 		
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'country'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/location.svg">
 			<el-select
 				v-model="userData.selectedCountry"
 				placeholder="Country"
 				@change="changeCountry"
+				@focus="focusedNow = 'country'"
+				@blur="focusedNow = ''"
 			>
 				<el-option
 					v-for="(country, i) in countries"
@@ -41,7 +47,7 @@
 		</div>
 
 
-      	<div class="field">
+      	<div class="field" :class="{'field-active': focusedNow === 'phone'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/phone.svg">
 			<v-text-field
 				hide-details
@@ -49,11 +55,13 @@
 				filled
             	label="Phone"
 				v-model="phoneWidthMask"
+				@focus="focusedNow = 'phone'"
+				@blur="focusedNow = ''"
 			>
 			</v-text-field>
 		</div>
 
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'password'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/lock.svg">
 			<v-text-field
 				hide-details
@@ -62,11 +70,13 @@
             	label="Password"
 				type="password"
 				v-model="userData.password"
+				@focus="focusedNow = 'password'"
+				@blur="focusedNow = ''"
 			>
 			</v-text-field>
 		</div>
 
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'confirmPassword'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/dubble_lock.svg">
 			<v-text-field
 				hide-details
@@ -75,11 +85,13 @@
             	label="Confirm Password"
 				type="password"
 				v-model="userData.confirmPassword"
+				@focus="focusedNow = 'confirmPassword'"
+				@blur="focusedNow = ''"
 			>
 			</v-text-field>
 		</div>
 
-		<div class="field">
+		<div class="field" :class="{'field-active': focusedNow === 'email'}">
 			<img class="icon" width="24" height="24" src="../assets/images/icons/email.svg">
 			<v-text-field
 				hide-details
@@ -88,6 +100,8 @@
             	label="Email"
 				type="email"
 				v-model="userData.email"
+				@focus="focusedNow = 'email'"
+				@blur="focusedNow = ''"
 			>
 			</v-text-field>
 		</div>
@@ -129,6 +143,7 @@ export default {
 			selectedCountry: '',
 			checkedTerms: false
 		},
+		focusedNow: '',
 		selectedMask: '',
 		termsAndConditions: false
 	}),
@@ -176,6 +191,10 @@ export default {
 
 		display: grid;
     	grid-template-columns: 50px 1fr;
+
+		&-active {
+			border: 1px solid $cta-color;
+		}
 
 		.icon {
 			margin: auto;
@@ -258,12 +277,16 @@ export default {
 	}
 
 	// vuetify changes
-	.v-input__slot {
+	div.v-input__slot {
 		background-color: transparent !important;
+	}
 
-		&::before {
-			display: none !important;
-		}
+	*.input__control > *.v-input__slot:after {
+		bottom: -1px;
+		content: unset !important;
+		left: 0;
+		width: 0 !important;
+		display: none;
 	}
 
 	.v-text-field__slot > label {
@@ -279,6 +302,10 @@ export default {
 
 	.v-text-field__slot > input {
 		font-weight: 300;
+	}
+
+	.v-label--active {
+		color: $cta-color !important;
 	}
 
 </style>
